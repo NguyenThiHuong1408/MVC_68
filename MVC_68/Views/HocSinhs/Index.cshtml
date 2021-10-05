@@ -1,0 +1,69 @@
+﻿@model MVC_68.Models.HocSinhGenreViewModel
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Index</h1>
+<form asp-controller="HocSinhs" asp-action="Index" method="get">
+    <p>
+
+        <select asp-for="HocSinhGenre" asp-items="Model.DiaChi">
+            <option value="">All</option>
+        </select>
+
+        Title: <input type="text" asp-for="SearchString" />
+        <input type="submit" value="Filter" />
+    </p>
+</form>
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                <label>Họ Tên</label>
+            </th>
+            <th>
+                <label>Năm Sinh</label>
+            </th>
+            <th>
+                <label>Địa chỉ</label>
+            </th>
+            <th>
+                <label>Email</label>
+            </th>
+            <th>
+                <label>Số điện thoại</label>
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model.HocSinhs)
+        {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.HoaTen)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.NamSinh)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.DiaChi)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Email)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.SDT)
+            </td>
+            <td>
+                <a asp-action="Edit" asp-route-id="@item.MaSV">Edit</a> |
+                <a asp-action="Details" asp-route-id="@item.MaSV">Details</a> |
+                <a asp-action="Delete" asp-route-id="@item.MaSV">Delete</a>
+            </td>
+        </tr>
+        }
+    </tbody>
+</table>
